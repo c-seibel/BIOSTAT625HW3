@@ -90,7 +90,7 @@ all.equal(as.numeric(lmtest$fitted.values), as.numeric(lm2$fitted.values))
 We will also check the efficiency of our function compared to the `lm` function.
 
 ```{r}
-#bench::mark(lm(form, data = iris), linearModel(formula = form, data = iris, print.summary = FALSE))
+bench::mark(as.numeric(lm(form, data = iris)$coefficients), as.numeric(linearModel(formula = form, data = iris, print.summary = FALSE)$coefficients))
 ```
 
 
