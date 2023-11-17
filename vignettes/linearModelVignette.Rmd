@@ -78,7 +78,20 @@ lm2 <- linearModel(formula = form, data = iris, print.summary = TRUE)
 ```
 
 
-For comparison of accuracy, we will compare
+To check the accuracy of our results, we will compare the output of our model to the `lm` function.
+
+```{r}
+lmtest <- lm(form, data = iris)
+all.equal(as.numeric(lmtest$coefficients), as.numeric(lm2$coefficients))
+all.equal(as.numeric(lmtest$residuals), as.numeric(lm2$residuals))
+all.equal(as.numeric(lmtest$fitted.values), as.numeric(lm2$fitted.values))
+```
+
+We will also check the efficiency of our function compared to the `lm` function.
+
+```{r}
+#bench::mark(lm(form, data = iris), linearModel(formula = form, data = iris, print.summary = FALSE))
+```
 
 
 
