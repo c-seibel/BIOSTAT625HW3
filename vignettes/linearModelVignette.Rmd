@@ -1,0 +1,84 @@
+---
+title: "Linear Model Tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Linear Model Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(BIOSTAT625HW3)
+```
+
+How to use the `linearModel` function:
+
+The `linearModel` function has 4 parameters:
+
+`formula`: a formula object that specifies the form of the model to be fitted
+
+`data`: a data frame containing the variables used in the formula for the linear model
+
+`print.summary`: a Boolean indicator for printing a summary table of the function results
+
+
+The following is an example of how to use the `linearModel` function. Here we will use the `iris` dataset from base R.
+
+First, we will set up our parameters for input into the function for a simple linear regression (one predictor and one outcome).
+
+```{r}
+data <- iris
+
+form <- as.formula(Sepal.Length ~ Petal.Length)
+
+```
+
+
+We then run the `linearModel`function with the defined parameters. We save the results to a variable named lm1. Here we specify `print.summary = FALSE`, so the summary table is not printed.
+
+```{r}
+lm1 <- linearModel(formula = form, data = data, print.summary = FALSE)
+```
+
+Here is an example of using `print.summary = TRUE`. This summary is of similar format to the output from the `lm` function.
+
+```{r}
+lm1 <- linearModel(formula = form, data = data, print.summary = TRUE)
+```
+
+
+The `linearModel` function returns a list containing coefficients, residuals, and fitted values from the specified linear model.
+
+```{r}
+lm1
+```
+
+
+Next, we will run a multiple linear regression model using the `linearModel` function and the same data set.
+
+```{r}
+data <- iris
+
+form <- as.formula(Sepal.Length ~ Sepal.Width + Petal.Width + Petal.Length + Species)
+
+```
+
+
+We will run the function with `print.summary = TRUE` to show the summary output. 
+
+```{r}
+lm2 <- linearModel(formula = form, data = iris, print.summary = TRUE)
+```
+
+
+For comparison of accuracy, we will compare
+
+
+

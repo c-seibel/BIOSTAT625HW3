@@ -3,7 +3,6 @@
 #'The function linearModel is used to fit a simple or multiple linear regression model
 #'
 #'@param formula a formula object that specifies the form of the model to be fitted.
-#'@param y a vector of the response variable for the linear model
 #'@param data a data frame containing the variables to be used in the linear regression.
 #'@param print.summary Boolean indicator for printing a summary table
 #'
@@ -12,19 +11,17 @@
 #'@examples
 #'data <- iris
 #'form <- as.formula(Sepal.Length ~ Sepal.Width + Petal.Width + Petal.Length + Species)
-#'outcome <- iris$Sepal.Length
-#'lm1 <- linearModel(formula = form, y = outcome, data = iris, print.summary = TRUE)
+#'lm1 <- linearModel(formula = form, data = iris, print.summary = TRUE)
 #'
 #'@export
 
 
 
-
-linearModel <- function(formula, y, data, print.summary){
+linearModel <- function(formula, data, print.summary){
 
   #set up design matrix and response vector
   X <- model.matrix(formula, data = data)
-  Y <- y
+  Y <- model.response(model.frame(formula, data = data))
   n <- nrow(X) #number of observations
   p <- ncol(X) #number of covariates + 1
 
@@ -74,9 +71,9 @@ linearModel <- function(formula, y, data, print.summary){
   p_valF <- ifelse(p_F == 0, "< 2e-16", p_F)
 
   #format table for output
-  output_table <- data.frame(Estimate = round(betahat, 5),
-                             SE = round(se_betahat, 5),
-                             t_value = round(t_stat, 5),
+  output_table <- data.frame(Estimate = betahat,
+                             SE = se_betahat,
+                             t_value = t_stat,
                              p_value = p_val,
                              signif0.05 = signif)
 
@@ -94,7 +91,7 @@ linearModel <- function(formula, y, data, print.summary){
     print(paste("Residual standard error: ", round(sigma, 4)))
     print(paste("Multiple R-squared: ", round(R_2,4)))
     print(paste("Adjusted R-squared: ", round(R_2_adj,4)))
-    print(paste("F-statistic: ", round(F_stat,4), " on ", df1, " and ", df2, "DF, p-value = ", p_valF))
+    print(paste("F-statistic: ", round(F_stat,4), " on ", df1, " and ", df2, "DF, p-value: ", p_valF))
   }
 
   #values to return
