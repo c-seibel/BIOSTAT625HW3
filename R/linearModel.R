@@ -1,3 +1,25 @@
+#'Linear Model
+#'
+#'The function linearModel is used to fit a simple or multiple linear regression model
+#'
+#'@param formula a formula object that specifies the form of the model to be fitted.
+#'@param y a vector of the response variable for the linear model
+#'@param data a data frame containing the variables to be used in the linear regression.
+#'@param print.summary Boolean indicator for printing a summary table
+#'
+#'@return a list of results including coefficients, residuals, and fitted values.
+#'
+#'@examples
+#'data <- iris
+#'form <- as.formula(Sepal.Length ~ Sepal.Width + Petal.Width + Petal.Length + Species)
+#'outcome <- iris$Sepal.Length
+#'lm1 <- linearModel(formula = form, y = outcome, data = iris, print.summary = TRUE)
+#'
+#'@export
+
+
+
+
 linearModel <- function(formula, y, data, print.summary){
 
   #set up design matrix and response vector
@@ -52,9 +74,9 @@ linearModel <- function(formula, y, data, print.summary){
   p_valF <- ifelse(p_F == 0, "< 2e-16", p_F)
 
   #format table for output
-  output_table <- data.frame(Estimate = betahat,
-                             SE = se_betahat,
-                             t_value = t_stat,
+  output_table <- data.frame(Estimate = round(betahat, 5),
+                             SE = round(se_betahat, 5),
+                             t_value = round(t_stat, 5),
                              p_value = p_val,
                              signif0.05 = signif)
 
