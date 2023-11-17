@@ -14,9 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, warning=FALSE}
 library(BIOSTAT625HW3)
-library(bench)
+require(bench)
 ```
 
 How to use the `linearModel` function:
