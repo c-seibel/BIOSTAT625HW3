@@ -4,12 +4,10 @@
 \alias{linearModel}
 \title{Linear Model}
 \usage{
-linearModel(formula, y, data, print.summary)
+linearModel(formula, data, print.summary)
 }
 \arguments{
 \item{formula}{a formula object that specifies the form of the model to be fitted.}
-
-\item{y}{a vector of the response variable for the linear model}
 
 \item{data}{a data frame containing the variables to be used in the linear regression.}
 
@@ -24,7 +22,6 @@ The function linearModel is used to fit a simple or multiple linear regression m
 \examples{
 data <- iris
 form <- as.formula(Sepal.Length ~ Sepal.Width + Petal.Width + Petal.Length + Species)
-outcome <- iris$Sepal.Length
-lm1 <- linearModel(formula = form, y = outcome, data = iris, print.summary = TRUE)
+lm1 <- linearModel(formula = form, data = iris, print.summary = TRUE)
 
 }
