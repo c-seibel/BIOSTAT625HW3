@@ -8,4 +8,7 @@ test_that("linearModel works", {
   expect_equal(as.numeric(linearModel(formula = Sepal.Length ~ Petal.Length, data = iris, print.summary = F)$residuals),
                as.numeric(lm(Sepal.Length ~ Petal.Length, data = iris)$residuals))
 
+  expect_equal(as.numeric(linearModel(formula = Sepal.Length ~ Petal.Length, data = iris, print.summary = T)$residuals),
+               as.numeric(lm(Sepal.Length ~ Petal.Length, data = iris)$residuals))
+
 })
