@@ -10,7 +10,9 @@
 <h2> BIOSTAT 625 HW 3 </h2>
 
 <h3> Linear Model Package </h3>
+
 by Caitlin Seibel
+
 
 The goal of this package is to fit a linear regression model, comparable to using `lm`. The `linearModel` function is able to fit a simple or multiple linear regression model, with both continuous and categorical covariates. The function returns values from the fitted linear model, such as coefficients, residuals, and fitted values. The user can specify `print.summary = TRUE` to include a summary table in the output of the function. This summary table is very similar to using `summary()` on an `lm`. The summary table includes a coefficient estimate, standard error, t statistic, and p-value for each of the predictors in the specified linear model. Also, the summary includes residual standard error, R-squared, adjusted R-squared, and F-statistic/p-value for the model. 
 
