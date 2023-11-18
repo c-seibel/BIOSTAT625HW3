@@ -36,7 +36,7 @@ The following is an example of how to use the `linearModel` function. Here we wi
 First, we will set up our parameters for input into the function for a simple linear regression (one predictor and one outcome).
 
 ```{r}
-data <- iris
+data("iris")
 
 form <- as.formula(Sepal.Length ~ Petal.Length)
 
@@ -46,13 +46,13 @@ form <- as.formula(Sepal.Length ~ Petal.Length)
 We then run the `linearModel`function with the defined parameters. We save the results to a variable named lm1. Here we specify `print.summary = FALSE`, so the summary table is not printed.
 
 ```{r}
-lm1 <- linearModel(formula = form, data = data, print.summary = FALSE)
+lm1 <- linearModel(formula = form, data = iris, print.summary = FALSE)
 ```
 
 Here is an example of using `print.summary = TRUE`. This summary is of similar format to the output from the `lm` function.
 
 ```{r}
-lm1 <- linearModel(formula = form, data = data, print.summary = TRUE)
+lm1 <- linearModel(formula = form, data = iris, print.summary = TRUE)
 ```
 
 
@@ -66,7 +66,7 @@ lm1
 Next, we will run a multiple linear regression model using the `linearModel` function and the same data set.
 
 ```{r}
-data <- iris
+data("iris")
 
 form <- as.formula(Sepal.Length ~ Sepal.Width + Petal.Width + Petal.Length + Species)
 
@@ -87,6 +87,10 @@ lmtest <- lm(form, data = iris)
 all.equal(as.numeric(lmtest$coefficients), as.numeric(lm2$coefficients))
 all.equal(as.numeric(lmtest$residuals), as.numeric(lm2$residuals))
 all.equal(as.numeric(lmtest$fitted.values), as.numeric(lm2$fitted.values))
+
+#comparing summary tables
+summary(lmtest)
+lm2 <- linearModel(formula = form, data = iris, print.summary = TRUE)
 ```
 
 We will also check the efficiency of our function compared to the `lm` function.
