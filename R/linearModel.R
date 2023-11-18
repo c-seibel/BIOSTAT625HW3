@@ -97,7 +97,8 @@ linearModel <- function(formula, data, print.summary){
   #values to return
   results <- list(coefficients = betahat,
                   residuals = epsilonhat,
-                  fitted.values = Yhat)
+                  fitted.values = Yhat,
+                  summary = output_table)
 
   return(results)
 }

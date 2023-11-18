@@ -56,7 +56,7 @@ lm1 <- linearModel(formula = form, data = data, print.summary = TRUE)
 ```
 
 
-The `linearModel` function returns a list containing coefficients, residuals, and fitted values from the specified linear model.
+The `linearModel` function returns a list containing coefficients, residuals, and fitted values from the specified linear model, as well as the values from the summary table.
 
 ```{r}
 lm1
